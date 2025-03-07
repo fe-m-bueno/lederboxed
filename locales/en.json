@@ -133,5 +133,7 @@
   "Filters": "Filters",
   "Select Country": "Select Country",
   "Explore": "Explore",
-  "Selected": "Selected"
+  "Selected": "Selected",
+  "Light": "Light",
+  "Dark": "Dark"
 }

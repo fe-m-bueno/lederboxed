@@ -204,7 +204,7 @@ export default function HomePage() {
         items={loading ? Array(5).fill(null) : data[0].results.slice(0, 5)}
         renderItem={
           loading
-            ? () => <Skeleton className="w-full ~h-[15rem]/[43rem]" />
+            ? () => <Skeleton className="w-full ~h-[25rem]/[52rem]" />
             : (movie) => <HeroItem movie={movie} />
         }
         slideSize="100%"
@@ -219,7 +219,7 @@ export default function HomePage() {
         items={loading ? Array(10).fill(null) : data[1].results.slice(0, 10)}
         renderItem={
           loading
-            ? () => <Skeleton className="w-full ~h-[25rem]/[50rem]" />
+            ? () => <Skeleton className="w-full ~h-[28.125rem]/[56.25rem]" />
             : (movie, index) => <Top10TitleItem movie={movie} index={index} />
         }
         slideHeight={Top10Height}
@@ -234,7 +234,7 @@ export default function HomePage() {
           items={loading ? Array(20).fill({}) : data[dataIndex]?.results}
           renderItem={
             loading
-              ? () => <Skeleton className="w-full h-[400px]" />
+              ? () => <Skeleton className="w-full ~h-[25rem]/[31.25rem]" />
               : (item) =>
                   item && (
                     <TitleItem item={item} type={type as 'movie' | 'tv'} />

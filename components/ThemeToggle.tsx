@@ -10,9 +10,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useTheme } from '@/hooks/useTheme';
-
+import { useTranslation } from 'react-i18next';
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <DropdownMenu>
@@ -28,11 +29,11 @@ export function ThemeToggle() {
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={toggleTheme}>
           <Sun className="w-4 h-4 mr-2" />
-          Light
+          {t('Light')}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={toggleTheme}>
           <Moon className="w-4 h-4 mr-2" />
-          Dark
+          {t('Dark')}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
