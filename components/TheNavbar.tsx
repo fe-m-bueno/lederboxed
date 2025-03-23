@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { ThemeToggle } from '@/components/ThemeToggle';
-import LanguageSelector from '@/components/LanguageSelector';
-import AppSearchbar from './AppSearchbar';
-import MenuHoverDropdown from './MenuHoverDropdown';
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useUserCountry } from '@/hooks/useUserCountry';
-import { useTranslation } from 'react-i18next';
-import { Button } from './ui/button';
-import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from "@/components/ThemeToggle";
+import LanguageSelector from "@/components/LanguageSelector";
+import AppSearchbar from "./AppSearchbar";
+import MenuHoverDropdown from "./MenuHoverDropdown";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useUserCountry } from "@/hooks/useUserCountry";
+import { useTranslation } from "react-i18next";
+import { Button } from "./ui/button";
+import { Menu, X } from "lucide-react";
 export default function TheNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -17,14 +17,14 @@ export default function TheNavbar() {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 0);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   const twoMonthsAgo = new Date(new Date().setMonth(new Date().getMonth() - 2))
     .toISOString()
-    .split('T')[0];
+    .split("T")[0];
 
   const country = useUserCountry();
 
@@ -32,8 +32,8 @@ export default function TheNavbar() {
     <nav
       className={`fixed top-0 left-0 1.5xl:left-0 right-0 z-50 flex flex-row justify-between items-center py-4 px-6 1.5xl:px-12 w-[95%] mx-auto rounded-b-3xl transition-all duration-200 ease-out ${
         isScrolled && !isOpen
-          ? ' bg-background/65 backdrop-blur-lg shadow-lg'
-          : 'shadow-none'
+          ? " bg-background/65 backdrop-blur-lg shadow-lg"
+          : "shadow-none"
       }`}
     >
       <div className="flex flex-row items-center gap-6">
@@ -45,100 +45,100 @@ export default function TheNavbar() {
           <span className="text-green-500 ">box</span>
           <span className="text-cyan-500">ed</span>
         </Link>
-        <div className="hidden 1.5xl:flex flex-row items-center gap-6">
+        <div className="hidden 1.5xl:flex flex-row items-center ~gap-2/6">
           <MenuHoverDropdown
-            title={t('Movies')}
+            title={t("Movies")}
             items={[
               {
-                label: t('Popular'),
-                href: '/discover?type=movie&sort_by=popularity.desc&vote_count.gte=300',
+                label: t("Popular"),
+                href: "/discover?type=movie&sort_by=popularity.desc&vote_count.gte=300",
               },
               {
-                label: t('Top Rated'),
-                href: '/discover?type=movie&sort_by=vote_average.desc&vote_count.gte=600',
+                label: t("Top Rated"),
+                href: "/discover?type=movie&sort_by=vote_average.desc&vote_count.gte=600",
               },
               {
-                label: t('In Theaters'),
+                label: t("In Theaters"),
                 href: `/discover?type=movie&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${twoMonthsAgo}&release_date.lte=${today}`,
               },
             ]}
           />
           <MenuHoverDropdown
-            title={t('TV Shows')}
+            title={t("TV Shows")}
             items={[
               {
-                label: t('Popular'),
-                href: '/discover?type=tv&sort_by=popularity.desc&vote_count.gte=100',
+                label: t("Popular"),
+                href: "/discover?type=tv&sort_by=popularity.desc&vote_count.gte=100",
               },
               {
-                label: t('Top Rated'),
-                href: '/discover?type=tv&sort_by=vote_average.desc&vote_count.gte=600',
+                label: t("Top Rated"),
+                href: "/discover?type=tv&sort_by=vote_average.desc&vote_count.gte=600",
               },
               {
-                label: t('On The Air'),
-                href: '/discover?type=tv&sort_by=first_air_date.desc&first_air_date.gte=2024-01-01&first_air_date.lte=2024-12-31',
+                label: t("On The Air"),
+                href: "/discover?type=tv&sort_by=first_air_date.desc&first_air_date.gte=2024-01-01&first_air_date.lte=2024-12-31",
               },
             ]}
           />
           <MenuHoverDropdown
-            title={t('Genres')}
+            title={t("Genres")}
             items={[
-              { label: t('Action'), href: '/discover?with_genres=28' },
+              { label: t("Action"), href: "/discover?with_genres=28" },
               {
-                label: t('Comedy'),
-                href: '/discover?with_genres=35',
+                label: t("Comedy"),
+                href: "/discover?with_genres=35",
               },
               {
-                label: t('Drama'),
-                href: '/discover?with_genres=18',
+                label: t("Drama"),
+                href: "/discover?with_genres=18",
               },
               {
-                label: t('Adventure'),
-                href: '/discover?with_genres=12',
+                label: t("Adventure"),
+                href: "/discover?with_genres=12",
               },
               {
-                label: t('Horror'),
-                href: '/discover?with_genres=27',
+                label: t("Horror"),
+                href: "/discover?with_genres=27",
               },
               {
-                label: t('Crime'),
-                href: '/discover?with_genres=80',
+                label: t("Crime"),
+                href: "/discover?with_genres=80",
               },
               {
-                label: t('Science Fiction'),
-                href: '/discover?with_genres=878',
+                label: t("Science Fiction"),
+                href: "/discover?with_genres=878",
               },
               {
-                label: t('Animation'),
-                href: '/discover?with_genres=16',
+                label: t("Animation"),
+                href: "/discover?with_genres=16",
               },
               {
-                label: t('Family'),
-                href: '/discover?with_genres=10751',
+                label: t("Family"),
+                href: "/discover?with_genres=10751",
               },
               {
-                label: t('Mystery'),
-                href: '/discover?with_genres=9648',
+                label: t("Mystery"),
+                href: "/discover?with_genres=9648",
               },
               {
-                label: t('Romance'),
-                href: '/discover?with_genres=10749',
+                label: t("Romance"),
+                href: "/discover?with_genres=10749",
               },
               {
-                label: t('History'),
-                href: '/discover?with_genres=36',
+                label: t("History"),
+                href: "/discover?with_genres=36",
               },
               {
-                label: t('Suspense'),
-                href: '/discover?with_genres=53',
+                label: t("Suspense"),
+                href: "/discover?with_genres=53",
               },
               {
-                label: t('Documentary'),
-                href: '/discover?with_genres=99',
+                label: t("Documentary"),
+                href: "/discover?with_genres=99",
               },
               {
-                label: t('Musical'),
-                href: '/discover?with_genres=10402',
+                label: t("Musical"),
+                href: "/discover?with_genres=10402",
               },
             ]}
           />
@@ -147,27 +147,27 @@ export default function TheNavbar() {
               title="Streamings"
               items={[
                 {
-                  label: 'Netflix',
+                  label: "Netflix",
                   href: `/discover?with_watch_providers=8&watch_region=${country}`,
                 },
                 {
-                  label: 'Prime Video',
+                  label: "Prime Video",
                   href: `/discover?with_watch_providers=119&watch_region=${country}`,
                 },
                 {
-                  label: 'Disney Plus',
+                  label: "Disney Plus",
                   href: `/discover?with_watch_providers=337&watch_region=${country}`,
                 },
                 {
-                  label: 'Apple TV+',
+                  label: "Apple TV+",
                   href: `/discover?with_watch_providers=350&watch_region=${country}`,
                 },
                 {
-                  label: 'Max',
+                  label: "Max",
                   href: `/discover?with_watch_providers=1899&watch_region=${country}`,
                 },
                 {
-                  label: 'Crunchyroll',
+                  label: "Crunchyroll",
                   href: `/discover?with_watch_providers=283&watch_region=${country}`,
                 },
               ]}
@@ -176,7 +176,7 @@ export default function TheNavbar() {
         </div>
       </div>
       <div className="hidden 1.5xl:flex flex-row items-center gap-8">
-        <div className="~w-44/96">
+        <div className="lg:w-full">
           <AppSearchbar />
         </div>
         <LanguageSelector />
@@ -189,12 +189,12 @@ export default function TheNavbar() {
       </div>
 
       <div
-        className={`fixed top-0 -left-6 w-full max-w-2xl h-full bg-background shadow-lg transform transition-transform z-20 ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed top-0 -right-12 w-full max-w-2xl h-full bg-background shadow-lg transform transition-transform z-20 ${
+          isOpen ? "translate-x-0" : "translate-x-full "
         } 1.5xl:hidden`}
       >
-        <div className="flex flex-col p-12 gap-6 justify-between">
-          <div className="flex flex-row justify-between">
+        <div className="flex flex-col px-20 py-12 gap-6 justify-between">
+          <div className="flex flex-row justify-between px-6">
             <Link
               href="/"
               className="text-2xl font-hand font-bold"
@@ -220,18 +220,18 @@ export default function TheNavbar() {
           <div className="flex flex-col justify-around gap-4">
             <div className="z-40">
               <MenuHoverDropdown
-                title={t('Movies')}
+                title={t("Movies")}
                 items={[
                   {
-                    label: t('Popular'),
-                    href: '/discover?type=movie&sort_by=popularity.desc&vote_count.gte=300',
+                    label: t("Popular"),
+                    href: "/discover?type=movie&sort_by=popularity.desc&vote_count.gte=300",
                   },
                   {
-                    label: t('Top Rated'),
-                    href: '/discover?type=movie&sort_by=vote_average.desc&vote_count.gte=600',
+                    label: t("Top Rated"),
+                    href: "/discover?type=movie&sort_by=vote_average.desc&vote_count.gte=600",
                   },
                   {
-                    label: t('In Theaters'),
+                    label: t("In Theaters"),
                     href: `/discover?type=movie&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${twoMonthsAgo}&release_date.lte=${today}`,
                   },
                 ]}
@@ -239,39 +239,39 @@ export default function TheNavbar() {
             </div>
             <div className="z-30">
               <MenuHoverDropdown
-                title={t('TV Shows')}
+                title={t("TV Shows")}
                 items={[
                   {
-                    label: t('Popular'),
-                    href: '/discover?type=tv&sort_by=popularity.desc&vote_count.gte=100',
+                    label: t("Popular"),
+                    href: "/discover?type=tv&sort_by=popularity.desc&vote_count.gte=100",
                   },
                   {
-                    label: t('Top Rated'),
-                    href: '/discover?type=tv&sort_by=vote_average.desc&vote_count.gte=600',
+                    label: t("Top Rated"),
+                    href: "/discover?type=tv&sort_by=vote_average.desc&vote_count.gte=600",
                   },
                   {
-                    label: t('On The Air'),
-                    href: '/discover?type=tv&sort_by=first_air_date.desc&first_air_date.gte=2024-01-01&first_air_date.lte=2024-12-31',
+                    label: t("On The Air"),
+                    href: "/discover?type=tv&sort_by=first_air_date.desc&first_air_date.gte=2024-01-01&first_air_date.lte=2024-12-31",
                   },
                 ]}
               />
             </div>
             <div className="z-20">
               <MenuHoverDropdown
-                title={t('Genres')}
+                title={t("Genres")}
                 items={[
-                  { label: t('Action'), href: '/discover?with_genres=28' },
+                  { label: t("Action"), href: "/discover?with_genres=28" },
                   {
-                    label: t('Comedy'),
-                    href: '/discover?with_genres=35',
+                    label: t("Comedy"),
+                    href: "/discover?with_genres=35",
                   },
                   {
-                    label: t('Drama'),
-                    href: '/discover?with_genres=18',
+                    label: t("Drama"),
+                    href: "/discover?with_genres=18",
                   },
                   {
-                    label: t('Explore'),
-                    href: '/discover',
+                    label: t("Explore"),
+                    href: "/discover",
                   },
                 ]}
               />
@@ -282,27 +282,27 @@ export default function TheNavbar() {
                   title="Streamings"
                   items={[
                     {
-                      label: 'Netflix',
+                      label: "Netflix",
                       href: `/discover?with_watch_providers=8&watch_region=${country}`,
                     },
                     {
-                      label: 'Prime Video',
+                      label: "Prime Video",
                       href: `/discover?with_watch_providers=119&watch_region=${country}`,
                     },
                     {
-                      label: 'Disney Plus',
+                      label: "Disney Plus",
                       href: `/discover?with_watch_providers=337&watch_region=${country}`,
                     },
                     {
-                      label: 'Apple TV+',
+                      label: "Apple TV+",
                       href: `/discover?with_watch_providers=350&watch_region=${country}`,
                     },
                     {
-                      label: 'Max',
+                      label: "Max",
                       href: `/discover?with_watch_providers=1899&watch_region=${country}`,
                     },
                     {
-                      label: 'Crunchyroll',
+                      label: "Crunchyroll",
                       href: `/discover?with_watch_providers=283&watch_region=${country}`,
                     },
                   ]}

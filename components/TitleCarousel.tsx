@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Carousel as ShadCarousel,
@@ -6,10 +6,10 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-} from './ui/carousel';
-import { useTranslation } from 'react-i18next';
-import Autoplay from 'embla-carousel-autoplay';
-import Link from 'next/link';
+} from "./ui/carousel";
+import { useTranslation } from "react-i18next";
+import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 
 interface CarouselProps {
   items: any[];
@@ -33,8 +33,8 @@ export default function TitleCarousel({
   loop = true,
   dragFree = false,
   autoplay = false,
-  slideHeight = '300px',
-  className = '',
+  slideHeight = "300px",
+  className = "",
   title,
   exploreLink,
   queryParams,
@@ -42,7 +42,7 @@ export default function TitleCarousel({
 }: CarouselProps) {
   const { t } = useTranslation();
   return (
-    <div className={`${isHero ? 'w-full' : 'w-[80%]'}`}>
+    <div className={`${isHero ? "w-full" : "w-[80%]"}`}>
       {(title || exploreLink) && (
         <div className="flex justify-between items-center mb-4 px-2">
           {title && (
@@ -50,10 +50,10 @@ export default function TitleCarousel({
           )}
           {exploreLink && (
             <Link
-              href={`${exploreLink}?${queryParams || 'page'}=1`}
+              href={`${exploreLink}?${queryParams || "page"}=1`}
               className="~text-xs/sm text-nowrap text-blue-400 hover:underline"
             >
-              {t('Explore more')} →
+              {t("Explore more")} →
             </Link>
           )}
         </div>
@@ -63,6 +63,7 @@ export default function TitleCarousel({
         opts={{
           loop,
           dragFree,
+          duration: 25,
         }}
         plugins={
           autoplay
@@ -81,7 +82,7 @@ export default function TitleCarousel({
           {items.map((item, index) => (
             <CarouselItem
               key={item?.id || index}
-              className={`${slideSize ? `basis-${slideSize}` : 'basis-auto'}`}
+              className={`${slideSize ? `basis-${slideSize}` : "basis-auto"}`}
               style={{ height: `${slideHeight}` }}
             >
               {renderItem(item, index)}
@@ -89,10 +90,10 @@ export default function TitleCarousel({
           ))}
         </CarouselContent>
         <CarouselPrevious
-          className={`${isHero ? 'absolute top-1/2 left-4' : ''}`}
+          className={`${isHero ? "absolute top-1/2 left-4" : ""}`}
         />
         <CarouselNext
-          className={`${isHero ? 'absolute top-1/2 right-4' : ''}`}
+          className={`${isHero ? "absolute top-1/2 right-4" : ""}`}
         />
       </ShadCarousel>
     </div>

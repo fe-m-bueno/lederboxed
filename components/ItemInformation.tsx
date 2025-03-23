@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { TMDBMovieDetail, TMDBTVDetail } from '@/types';
-import TitleStars from './TitleStars';
-import { timeFixer } from '@/utils/timeFixer';
-import WatchProviderCombobox from './WatchProviderCombobox';
-import SeasonsCollapsible from './SeasonsCollapsible';
-import { Badge } from './ui/badge';
-import { dateFixer } from '@/utils/dateFixer';
-import { languageFixer } from '@/utils/languageFixer';
-import { moneyFixer } from '@/utils/moneyFixer';
-import { useTranslation } from 'react-i18next';
+import Image from "next/image";
+import Link from "next/link";
+import { Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { TMDBMovieDetail, TMDBTVDetail } from "@/types";
+import TitleStars from "./TitleStars";
+import { timeFixer } from "@/utils/timeFixer";
+import WatchProviderCombobox from "./WatchProviderCombobox";
+import SeasonsCollapsible from "./SeasonsCollapsible";
+import { Badge } from "./ui/badge";
+import { dateFixer } from "@/utils/dateFixer";
+import { languageFixer } from "@/utils/languageFixer";
+import { moneyFixer } from "@/utils/moneyFixer";
+import { useTranslation } from "react-i18next";
 interface ItemInformationProps {
   item: TMDBMovieDetail | TMDBTVDetail;
   isTV?: boolean;
@@ -21,7 +21,7 @@ interface ItemInformationProps {
 
 export default function ItemInformation({ item, isTV }: ItemInformationProps) {
   const { t } = useTranslation();
-  const watchProviders = item['watch/providers']?.results || {};
+  const watchProviders = item["watch/providers"]?.results || {};
   return (
     <section className="flex flex-col gap-8 px-0 1.5xl:px-8">
       <div className="flex flex-col 1.5xl:flex-row justify-center items-center 1.5xl:items-start 1.5xl:justify-between gap-6 1.5xl:gap-4 h-full">
@@ -36,7 +36,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
             />
           </div>
 
-          <div className="flex flex-col ~gap-2/4 pl-4 1.5xl:min-w-[900px] ">
+          <div className="flex flex-col ~gap-2/4 pl-4 1.5xl:min-w-[700px] ">
             <h2 className="~text-lg/4xl font-bold">
               {(item as TMDBMovieDetail).title || (item as TMDBTVDetail).name}
             </h2>
@@ -50,7 +50,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
 
             <div className="flex flex-col 1.5xl:flex-row gap-1 1.5xl:gap-8 ~text-sm/base">
               <div className="flex flex-row gap-2">
-                <p className="text-foreground/80">{t('Release date')}</p>
+                <p className="text-foreground/80">{t("Release date")}</p>
                 <p className="text-foreground/80">
                   {dateFixer(
                     (item as TMDBMovieDetail).release_date ||
@@ -72,7 +72,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
             <div className="flex gap-2 flex-wrap">
               {item.genres.map((genre) => (
                 <Link
-                  href={`/discover?type=${isTV ? 'tv' : 'movie'}&with_genres=${
+                  href={`/discover?type=${isTV ? "tv" : "movie"}&with_genres=${
                     genre.id
                   }`}
                   key={genre.id}
@@ -98,7 +98,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
             {item.production_companies && (
               <div className="hidden 1.5xl:flex flex-wrap gap-2 ">
                 <span className="text-foreground/80 ~text-sm/base">
-                  {t('Producer')}
+                  {t("Producer")}
                 </span>
                 {item.production_companies?.map((company) => (
                   <Link
@@ -113,7 +113,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
             {item.networks && (
               <div className="hidden 1.5xl:flex flex-wrap gap-2 ">
                 <span className="text-foreground/80 ~text-sm/base">
-                  {t('Network')}
+                  {t("Network")}
                 </span>
                 {item.networks?.map((network) =>
                   isTV ? (
@@ -132,17 +132,17 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
 
             <div className="hidden 1.5xl:flex flex-row gap-2">
               <span className="text-foreground/80 ~text-sm/base">
-                {t('Original language')}
+                {t("Original language")}
               </span>
               <Badge variant="outline" className="capitalize">
                 {languageFixer(item.original_language)}
               </Badge>
             </div>
 
-            {typeof item.budget === 'number' && item.budget !== null && (
+            {typeof item.budget === "number" && item.budget !== null && (
               <div className="hidden 1.5xl:flex flex-row gap-2">
                 <span className="text-foreground/80 ~text-sm/base">
-                  {t('Budget')}
+                  {t("Budget")}
                 </span>
                 <Badge variant="outline">{moneyFixer(item.budget)}</Badge>
               </div>
@@ -150,14 +150,14 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
 
             <div className="hidden 1.5xl:flex flex-row gap-2">
               <span className="text-foreground/80 ~text-sm/base">
-                {t('Status')}
+                {t("Status")}
               </span>
               <Badge variant="outline">{item.status}</Badge>
             </div>
             {item.keywords && (
               <div className="hidden 1.5xl:flex flex-wrap gap-2">
                 <span className="text-foreground/80 ~text-sm/base">
-                  {t('Keywords')}
+                  {t("Keywords")}
                 </span>
                 {isTV
                   ? (item as TMDBTVDetail).keywords?.results
@@ -189,7 +189,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
               {item.homepage && (
                 <Link href={item.homepage} target="_blank">
                   <Button variant="outline" className="flex items-center gap-2">
-                    <Globe className="w-5 h-5" /> {t('Official site')}
+                    <Globe className="w-5 h-5" /> {t("Official site")}
                   </Button>
                 </Link>
               )}
@@ -218,10 +218,10 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
                     >
                       <Image
                         src={
-                          document.documentElement.getAttribute('data-mode') ===
-                          'dark'
-                            ? '/letterboxd-dark.svg'
-                            : '/letterboxd-light.svg'
+                          document.documentElement.getAttribute("data-mode") ===
+                          "dark"
+                            ? "/letterboxd-dark.svg"
+                            : "/letterboxd-light.svg"
                         }
                         alt="Letterboxd"
                         width={25}
@@ -249,7 +249,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
           {item.production_companies && (
             <div className="1.5xl:hidden flex flex-wrap gap-2 ">
               <span className="text-foreground/80 ~text-sm/base">
-                {t('Producer')}
+                {t("Producer")}
               </span>
               {item.production_companies?.map((company) => (
                 <Link
@@ -264,7 +264,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
           {item.networks && (
             <div className="1.5xl:hidden flex flex-wrap gap-2 ">
               <span className="text-foreground/80 ~text-sm/base">
-                {t('Network')}
+                {t("Network")}
               </span>
               {item.networks?.map((network) =>
                 isTV ? (
@@ -283,17 +283,17 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
 
           <div className="1.5xl:hidden flex flex-row gap-2">
             <span className="text-foreground/80 ~text-sm/base">
-              {t('Original language')}
+              {t("Original language")}
             </span>
             <Badge variant="outline" className="capitalize">
               {languageFixer(item.original_language)}
             </Badge>
           </div>
 
-          {typeof item.budget === 'number' && item.budget !== null && (
+          {typeof item.budget === "number" && item.budget !== null && (
             <div className="1.5xl:hidden flex flex-row gap-2">
               <span className="text-foreground/80 ~text-sm/base">
-                {t('Budget')}
+                {t("Budget")}
               </span>
               <Badge variant="outline">{moneyFixer(item.budget)}</Badge>
             </div>
@@ -301,14 +301,14 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
 
           <div className="1.5xl:hidden flex flex-row gap-2">
             <span className="text-foreground/80 ~text-sm/base">
-              {t('Status')}
+              {t("Status")}
             </span>
             <Badge variant="outline">{item.status}</Badge>
           </div>
           {item.keywords && (
             <div className="1.5xl:hidden flex flex-wrap gap-2">
               <span className="text-foreground/80 ~text-sm/base">
-                {t('Keywords')}
+                {t("Keywords")}
               </span>
               {isTV
                 ? (item as TMDBTVDetail).keywords?.results
@@ -340,7 +340,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
             {item.homepage && (
               <Link href={item.homepage} target="_blank">
                 <Button variant="outline" className="flex items-center gap-2">
-                  <Globe className="w-5 h-5" /> {t('Official site')}
+                  <Globe className="w-5 h-5" /> {t("Official site")}
                 </Button>
               </Link>
             )}
@@ -369,10 +369,10 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
                   >
                     <Image
                       src={
-                        document.documentElement.getAttribute('data-mode') ===
-                        'dark'
-                          ? '/letterboxd-dark.svg'
-                          : '/letterboxd-light.svg'
+                        document.documentElement.getAttribute("data-mode") ===
+                        "dark"
+                          ? "/letterboxd-dark.svg"
+                          : "/letterboxd-light.svg"
                       }
                       alt="Letterboxd"
                       width={25}
@@ -393,7 +393,7 @@ export default function ItemInformation({ item, isTV }: ItemInformationProps) {
         <div className="flex flex-col gap-4 mt-8 1.5xl:mt-0">
           <Image src="/JW.svg" alt="JW" width={100} height={100} />
           <span className="text-foreground font-semibold">
-            {t('Available in')}
+            {t("Available in")}
           </span>
 
           <WatchProviderCombobox providers={watchProviders} />
